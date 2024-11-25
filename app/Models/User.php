@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -21,6 +22,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        "username",
+        "avatar",
+        "about"
     ];
 
     /**
@@ -44,5 +48,29 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    // Realtion to questions
+    public function questions(): HasMany
+    {
+        return $this->hasMany(Question::class);
+    }
+
+    // Realtion to answers
+    public function answers(): HasMany
+    {
+        return $this->hasMany(Answer::class);
+    }
+
+    // Realtion to question_votes
+    public function votesOnQuestions(): HasMany
+    {
+        return $this->hasMany(QuestionVote::class);
+    }
+
+    // Realtion to answer_votes
+    public function votesOnAnswers(): HasMany
+    {
+        return $this->hasMany(AnswerVote::class);
     }
 }
