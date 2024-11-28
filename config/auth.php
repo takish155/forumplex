@@ -69,6 +69,11 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+
+        "column" => [
+            "username" => "username",
+            "password" => "password"
+        ]
     ],
 
     /*

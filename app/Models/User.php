@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use App\Models\Question;
+use App\Models\AnswerVote;
+use App\Models\Answer;
+use App\Models\QuestionVote;
+
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
@@ -19,7 +24,6 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
         'email',
         'password',
         "username",
@@ -53,24 +57,24 @@ class User extends Authenticatable
     // Realtion to questions
     public function questions(): HasMany
     {
-        return $this->hasMany(Question::class);
+        return $this->hasMany(Question::class, "user_id", "id");
     }
 
     // Realtion to answers
     public function answers(): HasMany
     {
-        return $this->hasMany(Answer::class);
+        return $this->hasMany(Answer::class, "user_id", "id");
     }
 
     // Realtion to question_votes
     public function votesOnQuestions(): HasMany
     {
-        return $this->hasMany(QuestionVote::class);
+        return $this->hasMany(QuestionVote::class, "user_id", "id");
     }
 
     // Realtion to answer_votes
     public function votesOnAnswers(): HasMany
     {
-        return $this->hasMany(AnswerVote::class);
+        return $this->hasMany(AnswerVote::class, "user_id", "id");
     }
 }
