@@ -13,18 +13,6 @@ use App\Http\Middleware\GuestMiddleware;
 use App\Http\Middleware\LocaleMiddleware;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/{locale}', [HomeController::class, "index"])
-    ->name("index");
-
-Route::get("/{locale}/questions/{question}", [QuestionController::class, "show"])
-    ->name("question.show");
-
-
-Route::middleware([GuestMiddleware::class])->group(function () {
-    Route::get("/{locale}/login", [LoginController::class, "index"])->name("login");
-    Route::post("/{locale}/login", [LoginController::class, "store"])->name("login.store");
-});
-
 Route::middleware([AuthMiddleware::class])->group(function () {
     // Answers
     Route::post("/{locale}/questions/{question}/answers", [AnswerController::class, "store"])
@@ -36,6 +24,15 @@ Route::middleware([AuthMiddleware::class])->group(function () {
         ->name("answer-vote.store");
 
     // Questions
+    Route::get("/{locale}/questions/{question}/edit", [QuestionController::class, "edit"])
+        ->name("question.edit");
+
+    Route::post("/{locale}/questions/{question}/mark_as_solved", [QuestionController::class, "markAsSolved"])
+        ->name("question.markAsSolved");
+
+    Route::put("/{locale}/questions/{question}", [QuestionController::class, "update"])
+        ->name("question.update");
+
     Route::get("/{locale}/questions/create", [QuestionController::class, "create"])
         ->name("question.create");
     Route::post("/{locale}/questions", [QuestionController::class, "store"])
@@ -59,4 +56,16 @@ Route::middleware([AuthMiddleware::class])->group(function () {
         ->name('profile.update');
     Route::delete('/{locale}/profile', [ProfileController::class, 'destroy'])
         ->name('profile.destroy');
+});
+
+Route::get('/{locale}', [HomeController::class, "index"])
+    ->name("index");
+
+Route::get("/{locale}/questions/{question}", [QuestionController::class, "show"])
+    ->name("question.show");
+
+
+Route::middleware([GuestMiddleware::class])->group(function () {
+    Route::get("/{locale}/login", [LoginController::class, "index"])->name("login");
+    Route::post("/{locale}/login", [LoginController::class, "store"])->name("login.store");
 });

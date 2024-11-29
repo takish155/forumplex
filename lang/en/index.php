@@ -13,5 +13,7 @@ return [
   "signOut" => "Sign Out",
   "unasweredQuestions" => "Unanswered Questions",
   "unansweredQuestionDescription" => "Find out user's curiosity and try answering it if you have the answer the user seek!",
-  "share" => "Share"
+  "share" => "Share",
+  "edit" => "Edit",
+  "delete" => "Delete",
 ];

@@ -65,19 +65,37 @@ class QuestionController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * @desc    Loads the edit form for editing the question
+     * @route   GET /{locale}/questions/{question}/edit
      */
-    public function edit(string $id)
+    public function edit(string $_, Question $question): View
     {
-        //
+        $this->authorize("update", $question);
+
+        return view("questions.edit", compact("question"));
     }
 
     /**
-     * Update the specified resource in storage.
+     * @desc    Updates the row of question specified
+     * @route   PUT /{locale}/questions/{question}
      */
-    public function update(Request $request, string $id)
+    public function update(StoreQuestionRequest $request, string $_, Question $question): RedirectResponse
     {
-        //
+        $this->authorize("update", $question);
+        $validated = $request->validated();
+
+        if ($request->hasFile("image")) {
+            $path = $request->file("image")->store("question_images", "public");
+
+            $question->update(["question_image_path", $path]);
+        };
+
+        $question->update([
+            "question_title" => $validated["title"],
+            "question_description" => $validated["description"]
+        ]);
+
+        return redirect()->back()->with("success", __("question.questionUpdateSuccess"));
     }
 
     /**
@@ -93,5 +111,24 @@ class QuestionController extends Controller
         $question->delete();
 
         return redirect()->route("index", app()->getLocale())->with("success", __("question.deleteQuestionSuccess"));
+    }
+
+    /**
+     * @desc    Marks the question as solved
+     * @route   POST /{locale}/questions/{question}/mark_as_solved
+     */
+    public function markAsSolved(string $_, Question $question): RedirectResponse
+    {
+        $this->authorize("update", $question);
+
+        if ($question->is_solved) {
+            $question->update(['is_solved' => false]);
+
+            return redirect()->back()->with("success", __('question.markedAsUnsolvedSuccess'));
+        }
+
+        $question->update(["is_solved" => true]);
+
+        return redirect()->back()->with("success", __("question.markedAsSolvedSuccess"));
     }
 }

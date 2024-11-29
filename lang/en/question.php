@@ -22,5 +22,14 @@ return [
   "you" => "You",
   "deleteQuestionSuccess" => "Your question has been deleted successfully!",
   "deleteAnswerSuccess" => "Your insight has been deleted successfully!",
+  "editQuestion" => "Edit your question",
+  "cancel" => "Cancel",
+  "questionUpdateSuccess" => "Your question has been updated successfully!",
+  "markedAsUnsolvedSuccess" => "Question marked as unsolved successfully!",
+  "markedAsSolvedSuccess" => "Question marked as solved successfully!",
+  "markAsSolved" => "Mark as solved",
+  "unmarkSolve" => "Mark as unsolved",
+  "solved" => "This question is marked as solved and is not accepting new insights.",
+  "editQuestionDescription" => "Edit your question into your liking, make it concise if possible",
   "comment" => "Comment"
 ];

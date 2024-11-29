@@ -17,6 +17,10 @@ class AnswerController extends Controller
     // @route   POST /{locale}/questions/{question}/answers
     public function store(StoreAnswerRequest $req, string $_, Question $question): RedirectResponse
     {
+        if ($question->is_solved) {
+            return redirect()->back()->with("error", __("question.solved"));
+        }
+
         $validated = $req->validated();
 
         if ($req->hasFile("image")) {

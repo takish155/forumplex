@@ -23,7 +23,7 @@ $params = [
             <form method="POST" action="{{ route('answer.destroy', $params) }}">
                 @csrf
                 @method("DELETE")
-                <button class="btn btn-error btn-xs">Delete</button>
+                <button class="btn btn-error btn-xs"><i class="fa-solid fa-trash"></i> {{ __("index.delete") }} </button>
             </form>
         @endcan
         <div class="flex gap-1 justify-center items-center badge badge-lg bg-base-200">
