@@ -16,4 +16,6 @@ return [
   "share" => "Share",
   "edit" => "Edit",
   "delete" => "Delete",
+  "profile" => "Profile",
+  "recentQuestions" => "Recent Questions"
 ];

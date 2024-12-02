@@ -15,6 +15,7 @@
         <ul class="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow-xl">
           <li class="ml-2 mb-4 text-medium">{{ __("index.greetUser", ["username" => auth()->user()->username ]) }}</li>
           <li><a href="{{ route('dashboard', $locale) }}">{{ __("index.dashboard") }}</a></li>
+          <li><a href="{{ route("user.show", ["locale" => $locale, "user" => auth()->user()]) }}">{{ __("index.profile") }}</a></li>
           <li><a>{{ __("index.settings") }}</a></li>
           <li>
             <form method="POST" action="{{ route('logout', $locale) }}">

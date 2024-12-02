@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VoteAnswerController;
 use App\Http\Controllers\VoteQuestionController;
 use App\Http\Middleware\AuthMiddleware;
@@ -63,6 +64,15 @@ Route::get('/{locale}', [HomeController::class, "index"])
 
 Route::get("/{locale}/questions/{question}", [QuestionController::class, "show"])
     ->name("question.show");
+
+Route::get("/{locale}/users/{user}", [UserController::class, "show"])
+    ->name("user.show");
+
+Route::get("/{locale}/users/{user}/insights", [UserController::class, "showUserInsights"])
+    ->name("user.insight");
+
+Route::get("/{locale}/users/{user}/votes", [UserController::class, "showUserVotedDiscussion"])
+    ->name("user.voted");
 
 
 Route::middleware([GuestMiddleware::class])->group(function () {

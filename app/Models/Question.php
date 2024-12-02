@@ -93,7 +93,9 @@ class Question extends Model
         parent::boot();
 
         static::creating(function ($model) {
-            $model->user_id = auth()->user()->id;
+            if (!$model->user_id) {
+                $model->user_id = auth()->user()->id;
+            }
         });
     }
 }

@@ -1,4 +1,4 @@
-@props(['answer', "question"])
+@props(['answer', "question", "needMargin" => true])
 
 @php
 $locale = app()->getLocale();
@@ -9,7 +9,7 @@ $params = [
 ];
 @endphp
 
-<section class="w-full card card-body bg-base-100 shadow-lg mb-10">
+<section class="w-full card card-body bg-base-100 shadow-lg {{ $needMargin ? 'mb-10' : ''}}">
     <!-- Simplicity is the consequence of refined emotions. - Jean D'Alembert -->
     <x-user-info-card :user="$answer->author" />
     <p>{{ $answer->message }}</p>

@@ -1,7 +1,12 @@
-
-
 <!-- Simplicity is the essence of happiness. - Cedric Bledsoe -->
 @props(['user'])
+
+@php
+  $params = [
+    "locale" => app()->getLocale(),
+    "user" => $user
+  ]
+@endphp
 
 <div class="flex items-center gap-2 mb-3">
     <div class="avatar">
@@ -10,8 +15,8 @@
         </div>
      </div>
      @auth
-      <h4 class="text-sm">{{ $user->username === auth()->user()->username ? __("question.you") : $user->username}}</h4>
+      <h4 class="text-sm"><a class="hover:underline pointer" href="{{ route('user.show', $params) }}">{{$user->username === auth()->user()->username ? __("question.you") : $user->username}}</a></h4>
      @else
-      <h4 class="text-sm">{{ $user->username }}</h4>
+      <h4 class="text-sm"><a class="hover:underline pointer" href="{{ route('user.show', $params) }}">{{ $user->username }}</a></h4>
       @endauth
 </div>

@@ -1,0 +1,1 @@
+<x-app-layout>Hello users</x-app-layout>

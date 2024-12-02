@@ -1,3 +1,5 @@
+@props(["loadRecentQuestions" => false])
+
 <!DOCTYPE html>
 <html data-theme="light"  lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -24,13 +26,18 @@
             <!-- Page Content -->
             <x-side-nav />
             <main class="min-h-screen lg:ml-56">
-                {{-- Display alert message --}}
-                @if(session()->has("success"))
-                    <x-alert type="success" message="{{ session('success') }}" />
-                @else 
-                    <x-alert type="error" message="{{ session('error') }}" />
-                @endif
-                {{ $slot }}
+                <div class="flex justify-center w-[95%] mx-auto space-around gap-4 flex-wrap">
+                    {{-- Display alert message --}}
+                    @if(session()->has("success"))
+                        <x-alert type="success" message="{{ session('success') }}" />
+                    @else 
+                        <x-alert type="error" message="{{ session('error') }}" />
+                    @endif
+                    {{ $slot }}
+                    @if($loadRecentQuestions)
+                        <x-recent-question-section />
+                    @endif
+                </div>
             </main>
             <x-footer />
         </div>

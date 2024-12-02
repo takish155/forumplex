@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Question;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class HomeController extends Controller
@@ -11,10 +10,8 @@ class HomeController extends Controller
     //
     public function index(): View
     {
-        $unansweredQuestions = Question::where("is_solved", false)
-            ->take(5)
-            ->get();
+        $questions = Question::paginate(10);
 
-        return view('welcome', compact("unansweredQuestions"));
+        return view('welcome', compact("questions"));
     }
 }
