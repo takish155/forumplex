@@ -11,6 +11,6 @@ class DashboardController extends Controller
     // @route   GET /dashboard
     public function index(): View
     {
-        return view("dashboard");
+        return view("dashboard.index");
     }
 }

@@ -1,6 +1,11 @@
 <?php
 
 return [
+  "meta" => [
+    "title" => [
+      "index" => "Forumplex - Ask Anything"
+    ],
+  ],
   "title" => "Forumplex",
   "dashboard" => "Dashboard",
   "askSomething" => "Ask Something",
@@ -17,5 +22,7 @@ return [
   "edit" => "Edit",
   "delete" => "Delete",
   "profile" => "Profile",
-  "recentQuestions" => "Recent Questions"
+  "recentQuestions" => "Recent Questions",
+  "insights" => "Insights",
+  "voted" => "Voted Questions"
 ];

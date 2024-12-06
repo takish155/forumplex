@@ -1,5 +1,7 @@
 @php
     $locale = app()->getLocale();
+
+    $user = auth()->user();
 @endphp
 
 <div>
@@ -8,7 +10,7 @@
         <summary class="btn m-1">
             <div class="avatar">
                 <div class="w-[50px] rounded-full">
-                  <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                  <img src="{{ $user->avatar ? asset($user->avatar) : "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"}}" />
                 </div>
             </div>
         </summary>

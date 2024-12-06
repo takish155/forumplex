@@ -1,4 +1,4 @@
-@props(["loadRecentQuestions" => false])
+@props(["loadRecentQuestions" => false, "title" => "Forumplex", "description"])
 
 <!DOCTYPE html>
 <html data-theme="light"  lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ $title }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -25,7 +25,7 @@
 
             <!-- Page Content -->
             <x-side-nav />
-            <main class="min-h-screen lg:ml-56">
+            <main class="min-h-screen lg:ml-56 pt-5">
                 <div class="flex justify-center w-[95%] mx-auto space-around gap-4 flex-wrap">
                     {{-- Display alert message --}}
                     @if(session()->has("success"))

@@ -13,7 +13,7 @@
 @endphp
 
 
-<x-app-layout>
+<x-app-layout title="{{ __('question.meta.title.show', ['title' => $question->question_title])}}">
   @if($question->is_solved) 
     <div role="alert" class="alert text-sm alert-info w-[90%] mx-auto my-5 text-white">
       <svg

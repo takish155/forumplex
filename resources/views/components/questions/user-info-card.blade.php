@@ -11,7 +11,7 @@
 <div class="flex items-center gap-2 mb-3">
     <div class="avatar">
         <div class="w-7 rounded-full">
-          <img src="{{ $user->avatar_image_path ?? 'https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp' }}" />
+          <img src="{{ $user->avatar ? asset($user->avatar) : 'https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp' }}" />
         </div>
      </div>
      @auth

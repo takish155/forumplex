@@ -61,7 +61,7 @@ class QuestionController extends Controller
      */
     public function show(string $_, Question $question): View
     {
-        return view("questions.index", compact("question"));
+        return view("questions.show", compact("question"));
     }
 
     /**

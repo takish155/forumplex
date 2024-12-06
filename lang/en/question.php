@@ -1,6 +1,13 @@
 <?php
 
 return [
+  "meta" => [
+    "title" => [
+      "show" => ":title : Forumplex",
+      "edit" => "Edit :title : Forumplex",
+      "create" => "Ask Something - Forumplex"
+    ],
+  ],
   "askSomething" => "Ask Something",
   "askSomethingDescription" => "Be sure to make your question concise, and clear so that others can understand!",
   "questionTitle" => "Question Title",

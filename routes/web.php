@@ -65,6 +65,10 @@ Route::get('/{locale}', [HomeController::class, "index"])
 Route::get("/{locale}/questions/{question}", [QuestionController::class, "show"])
     ->name("question.show");
 
+// User Routes
+Route::get("/{locale}/users", [UserController::class, "index"])
+    ->name("user.index");
+
 Route::get("/{locale}/users/{user}", [UserController::class, "show"])
     ->name("user.show");
 
@@ -73,6 +77,12 @@ Route::get("/{locale}/users/{user}/insights", [UserController::class, "showUserI
 
 Route::get("/{locale}/users/{user}/votes", [UserController::class, "showUserVotedDiscussion"])
     ->name("user.voted");
+
+Route::get("/{locale}/users/{user}/edit", [UserController::class, "edit"])
+    ->name("user.edit");
+
+Route::put("/{locale}/users/{user}", [UserController::class, "update"])
+    ->name("user.update");
 
 
 Route::middleware([GuestMiddleware::class])->group(function () {

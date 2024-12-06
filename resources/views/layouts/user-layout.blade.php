@@ -8,11 +8,11 @@
 @endphp
 
 <div class="md:w-[65%] mx-auto">
-  <section class="py-10">
+  <section class="py-10 flex justify-around items-center">
     <div class="flex items-center gap-4 mb-3">
       <div class="avatar">
           <div class="w-24 rounded-full">
-            <img src="{{ $user->avatar_image_path ?? 'https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp' }}" />
+            <img src="{{ $user->avatar ? asset($user->avatar) : 'https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp' }}" />
           </div>
        </div>
        <div>
@@ -21,14 +21,18 @@
             <i class="fa fa-birthday-cake"></i> {{ $user->created_at->format("F d, Y") }}
          </p>
          <p class="text-sm flex gap-2 items-center">
-            <i class="fa fa-envelope"></i> {{ __("users.answered", ["count" => $user->answers->count()]) }}
+          <i class="fa-solid fa-lightbulb"></i> {{ __("users.answered", ["count" => $user->answers->count()]) }}
          </p>
          <p class="text-sm flex gap-2 items-center">
-            <i class="fa fa-check-to-slot"></i> {{ __("users.voted", ["voted" => $user->votesOnQuestions->count() + $user->votesOnAnswers ->count() ]) }}
+          <i class="fa-solid fa-thumbs-up"></i> {{ __("users.voted", ["voted" => $user->votesOnQuestions->count() + $user->votesOnAnswers ->count() ]) }}
          </p>
        </div>
     </div>
-    <div></div>
+    <div>
+      @can("update", $user)
+        <a href="{{ route('user.edit', $params) }}" class="btn btn-sm btn-primary">{{ __("users.editProfile") }}</a>
+      @endcan
+    </div>
   </section>
   <section class="mx-auto mb-24">
         <div role="tablist" class="tabs tabs-lifted">
